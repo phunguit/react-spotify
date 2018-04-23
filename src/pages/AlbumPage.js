@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import Album from '../components/Album';
+import AlbumDetail from '../components/AlbumDetail';
 
 class AlbumPage extends Component {
   render() {
     return (
         <div>
-            <Album />
+            <AlbumDetail />
         </div>
     );
   }
