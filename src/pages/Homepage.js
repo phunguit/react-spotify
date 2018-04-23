@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import SearchForm from '../components/SearchForm';
 import Artist from '../components/Artist';
 
-class Homepage extends Component {
+class HomePage extends Component {
   render() {
     return (
         <div className="panel panel-info">
@@ -13,11 +13,10 @@ class Homepage extends Component {
                 <Artist />
                 <Artist />
                 <Artist />
-                <Artist />
             </div>
         </div>
     );
   }
 }
 
-export default Homepage;
+export default HomePage;

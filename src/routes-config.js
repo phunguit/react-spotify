@@ -1,10 +1,24 @@
-import HomePage from './pages/Homepage';
+import React from 'react';
+
+import HomePage         from './pages/HomePage';
+import ArtistPage       from './pages/ArtistPage';
+import AlbumPage        from './pages/AlbumPage';
 
 const routes = [
     {
-        path: '',
+        path: '/',
         exact: true,
-        component: <HomePage />
+        main: () => <HomePage />
+    },
+    {
+        path: '/artist/:id',
+        exact: true,
+        main: ({ match }) => <ArtistPage match={ match } />
+    },
+    {
+        path: '/album/:id',
+        exact: true,
+        main: ({ match }) => <AlbumPage match={ match } />
     }
 ]
 
