@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import query from './query';
 
 const reducers = combineReducers({
-    test: null
+    query: query
 });
 
 export default reducers;

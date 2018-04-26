@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 
 import SearchForm from '../components/SearchForm';
-import Artist from '../components/Artist';
+import ArtistList from '../components/ArtistList';
 
 class HomePage extends Component {
   render() {
     return (
         <div className="panel panel-info">
             <SearchForm />
-
-            <div className="panel-body">
-                <Artist />
-                <Artist />
-                <Artist />
-            </div>
+            <ArtistList />
         </div>
     );
   }
