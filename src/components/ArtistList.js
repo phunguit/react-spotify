@@ -1,35 +1,66 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import * as configs from '../contants/Configs';
+import Artist from './Artist';
+
 class ArtistList extends Component {
-  render() {
-    
-    console.log(this.props.query);
 
-    return (
-        <div className="panel-body">
-            <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                <div className="thumbnail">
-                    <img src="https://i.scdn.co/image/23b3caeb7f6d181787bd5bd04f5c0ddbc332dcab" alt="Thu Minh" />
-                    <div className="caption">
-                    <h3><a href="artist/4mzMFxVZNS2uCVNdsVFoj5">Thu Minh</a></h3>
-                    <p><span className="label label-warning" style={{marginRight: 5}}>vietnamese pop</span></p>
-                    </div>
-                </div>
-            </div>
+    constructor(props) {
+        super(props);
 
-            <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                <div className="thumbnail">
-                    <img src="https://i.scdn.co/image/23b3caeb7f6d181787bd5bd04f5c0ddbc332dcab" alt="Thu Minh" />
-                    <div className="caption">
-                    <h3><a href="artist/4mzMFxVZNS2uCVNdsVFoj5">Thu Minh</a></h3>
-                    <p><span className="label label-warning" style={{marginRight: 5}}>vietnamese pop</span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-  }
+        this.state = {
+            artists: []
+        };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.getArtistList(nextProps.query);
+    }
+
+    render() {
+        var { artists } = this.state;
+
+        
+
+        return (
+            <div className="panel-body">{ this.biddingArtistList(artists) }</div>
+        );
+    }
+
+    biddingArtistList(artists) {
+        if(artists.length === 0) {
+            return;
+        }
+        return artists.map( (artist, index) => {
+            return <Artist key={ index } artist={ artist } />
+        })
+        
+    }
+
+    getArtistList(query) {
+        if(query === '') {
+            return;
+        }
+        var url = configs.SEARCH_URL + '?q='+ query +'&type=artist'
+        var obj = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + configs.ACCESS_TOKEN
+            }
+        }
+
+        fetch(url, obj).then( (res) => {
+            return res.json();
+        }).then( (data) => {
+            //console.log(resJson);
+            if(data !== undefined && data !== null) {
+                this.setState({
+                    artists: data.artists.items
+                })
+            }
+        });
+    }
 }
 
 const mapStateToProps = (state) => {
