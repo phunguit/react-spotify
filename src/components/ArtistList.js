@@ -21,25 +21,27 @@ class ArtistList extends Component {
     render() {
         var { artists } = this.state;
 
-        
-
         return (
             <div className="panel-body">{ this.biddingArtistList(artists) }</div>
         );
     }
 
     biddingArtistList(artists) {
-        if(artists.length === 0) {
-            return;
+        var xhtml = 'Please enter the artist you want to search!';
+
+        if(artists.length !== 0) {
+            xhtml = artists.map( (artist, index) => {
+                return <Artist key={ index } artist={ artist } />
+            })
         }
-        return artists.map( (artist, index) => {
-            return <Artist key={ index } artist={ artist } />
-        })
-        
+        return xhtml;
     }
 
     getArtistList(query) {
         if(query === '') {
+            this.setState({
+                artists: []
+            })
             return;
         }
         var url = configs.SEARCH_URL + '?q='+ query +'&type=artist'
@@ -53,7 +55,6 @@ class ArtistList extends Component {
         fetch(url, obj).then( (res) => {
             return res.json();
         }).then( (data) => {
-            //console.log(resJson);
             if(data !== undefined && data !== null) {
                 this.setState({
                     artists: data.artists.items

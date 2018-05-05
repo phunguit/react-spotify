@@ -24,9 +24,15 @@ class SearchForm extends Component {
     }
 
     handleSubmit = (e) => {
-        e.preventDefault();
-        
+        e.preventDefault();        
         this.props.changeQuery(this.state.query);
+    }
+
+    handleClear = (e) => {
+        this.setState({
+            query: ''
+        });
+        this.props.changeQuery('');
     }
 
     render() {
@@ -38,6 +44,7 @@ class SearchForm extends Component {
                     <div className="form-group">
                         <input onChange={ this.handleChange } name="query" value={ queryValue } type="text" className="form-control" placeholder="Enter artist name ..." />
                         <button type="submit" className="btn btn-danger">Search</button>
+                        <button type="button" onClick={ this.handleClear } className="btn btn-info">Clear</button>
                     </div>
                 </form>
             </div>
