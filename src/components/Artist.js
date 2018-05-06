@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Artist extends Component {
     render() {
@@ -8,7 +9,9 @@ class Artist extends Component {
                 <div className="thumbnail">                    
                     { this.getImg(artist) }
                     <div className="caption">
-                    <h3><a href="artist/4mzMFxVZNS2uCVNdsVFoj5">{ artist.name }</a></h3>
+                    <h3>
+                        <Link to={`artist/${artist.id}`}>{ artist.name }</Link>
+                    </h3>
                     { this.getGenres(artist.genres) }
                     </div>
                 </div>

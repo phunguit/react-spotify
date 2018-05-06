@@ -1,2 +1,2 @@
-export const ACCESS_TOKEN   = 'BQDfcCbbjls9mGxT7mtMgxOTOicW5sHrE1i0ngyl8IEKeGxhaGovmke0qoEjRcZ9WvfsfOgz251613OVDIk';
+export const ACCESS_TOKEN   = 'BQBLdrxsie7Bt4ZgbAQFhy5ox-lxyvtzsvO572feON0-dfgWq6ISLB32_lsWNx4VNc4d09g65jpqC7NL0e0';
 export const SEARCH_URL     = 'https://api.spotify.com/v1/search';

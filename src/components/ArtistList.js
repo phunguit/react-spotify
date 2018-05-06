@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import * as configs from '../contants/Configs';
 import Artist from './Artist';
+import FetchAPI from '../services/FetchAPI';
 
 class ArtistList extends Component {
 
@@ -44,17 +45,8 @@ class ArtistList extends Component {
             })
             return;
         }
-        var url = configs.SEARCH_URL + '?q='+ query +'&type=artist'
-        var obj = {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + configs.ACCESS_TOKEN
-            }
-        }
-
-        fetch(url, obj).then( (res) => {
-            return res.json();
-        }).then( (data) => {
+        
+        FetchAPI.fetchToSearchArtist(query).then( (data) => {
             if(data !== undefined && data !== null) {
                 this.setState({
                     artists: data.artists.items
