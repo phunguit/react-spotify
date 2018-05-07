@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import * as configs from '../contants/Configs';
 import Artist from './Artist';
 import FetchAPI from '../services/FetchAPI';
 

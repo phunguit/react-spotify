@@ -33,7 +33,6 @@ class Artist extends Component {
         var xhtml = <img src={window.location.origin + '/img/no_image_available.png'} alt='No image' />;        
 
         if(images !== undefined && images.length > 1) {
-        var images = artist.images;
             xhtml = <img src={images[1].url} alt={ artist.name } />
         }
         return xhtml;

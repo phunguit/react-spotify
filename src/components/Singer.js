@@ -20,8 +20,7 @@ class Singer extends Component {
     }
 
     render() {
-
-        console.log(this.state.artist);
+        var { artist } = this.state;
 
         return (
             <div className="panel panel-info">
@@ -31,7 +30,7 @@ class Singer extends Component {
                 <div className="panel-body">
                     <div className="panel-body">                    
                         <div className="col-sm-4 col-md-4">
-                            <img src="https://i.scdn.co/image/23b3caeb7f6d181787bd5bd04f5c0ddbc332dcab" alt="Thu Minh" className="img-rounded img-responsive" />
+                            { this.getImg(artist) }
                             <blockquote style={{marginTop: 20}}>
                                 <p>Thu Minh</p>
                             </blockquote>
@@ -67,6 +66,19 @@ class Singer extends Component {
             }
         });
 
+    }
+
+    getImg(artist) {
+        if(artist === null) {
+            return;
+        }
+        var images = artist.images;
+        var xhtml = <img src={window.location.origin + '/img/no_image_available.png'} alt='No image' />;        
+
+        if(images !== undefined && images.length > 1) {
+            xhtml = <img src={images[1].url} alt={ artist.name } className='img-rounded img-responsive' />
+        }
+        return xhtml;
     }
 }
 
