@@ -4,9 +4,12 @@ import Singer from '../components/Singer';
 
 class ArtistPage extends Component {
   render() {
+    
+    var { match } = this.props;
+
     return (
         <div>
-            <Singer />
+            <Singer match={ match } />
         </div>
     );
   }

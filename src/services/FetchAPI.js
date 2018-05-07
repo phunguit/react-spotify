@@ -10,7 +10,7 @@ export default class FetchAPI {
     }
 
     static fetchToSearchArtist(query) {
-        var url = configs.SEARCH_URL + '?q='+ query +'&type=artist';
+        var url = configs.BASE_URL + 'search?q='+ query +'&type=artist';
 
         return fetch(url, FetchAPI.obj).then( (res) => {
             return res.json();
