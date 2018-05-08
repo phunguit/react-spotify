@@ -10,7 +10,7 @@ class Album extends Component {
                 <div className="thumbnail">
                 { this.getImg(album) }
                 <div className="caption">
-                    <h5><Link to={`album/${album.id}`}>{ album.name }</Link></h5>
+                    <h5><Link to={`/album/${album.id}`}>{ album.name }</Link></h5>
                 </div>
                 </div>
             </div>

@@ -26,7 +26,15 @@ export default class FetchArtistAxios {
         }).catch( (error) => {
             console.log(error);
         });
+    }
 
+    static getAblbumTracks(id) {
+        var url = configs.BASE_URL + 'albums/' + id + '/tracks?limit=4';
+        return axios.get(url, FetchArtistAxios.obj).then( (res) => {
+            return res;
+        }).catch( (error) => {
+            console.log(error);
+        });
     }
 
 }
