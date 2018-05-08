@@ -17,14 +17,19 @@ class Singer extends Component {
     componentWillMount() {
         var id = this.props.match.params.id;
         this.getArtistFromAPI(id);
+        this.getArtistAlbumFromAPI(id);
     }
 
     render() {
-        var { artist } = this.state;
-        if(artist === null) {
+        var { artist, albums } = this.state;
+        if(artist === null || albums.length === 0) {
             return <div></div>;
         }
-        //console.log(artist);
+        
+        var albumsToRender = albums.map((album, index) => {
+            return <Album key={ index } album={ album } />
+        });
+
         return (
             <div className="panel panel-info">
                 <div className="panel-heading">
@@ -46,11 +51,7 @@ class Singer extends Component {
                                     <h3 className="panel-title">List Albums</h3>
                                 </div>
                                 <div className="panel-body list-albums">
-                                    <Album />
-                                    <Album />
-                                    <Album />
-                                    <Album />
-                                    <Album />
+                                    { albumsToRender }
                                 </div>
                             </div>
                         </div>
@@ -78,6 +79,16 @@ class Singer extends Component {
             }
         });
 
+    }
+
+    getArtistAlbumFromAPI(id) {
+        FetchArtistAxios.getArtistAblbums(id).then( res => {
+            if(res.data !== null) {                
+                this.setState({
+                    albums: res.data.items
+                });
+            }
+        });
     }
 
     getImg(artist) {

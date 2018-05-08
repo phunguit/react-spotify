@@ -4,6 +4,7 @@ import AlbumDetail from '../components/AlbumDetail';
 
 class AlbumPage extends Component {
   render() {
+    console.log(this.props);
     return (
         <div>
             <AlbumDetail />

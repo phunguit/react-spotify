@@ -1,2 +1,2 @@
-export const ACCESS_TOKEN   = 'BQAnggaSsbMcnGYMs-j2ptMdUemcVIojhMLuJTYGQRxuCNdpyhtdadF9kqcGJU__7LslUO379gvUQNuso1od7ASPJVDxKWl22YyosHaIEnjiFuwup_rcKsOtBFC5yg5m18hc1mWuJT5pMWyQEL_cmZzdCHLfEYo4-ss_ALvEAWO7DNYDDg';
+export const ACCESS_TOKEN   = 'BQDBnN1Fb8-Vex74INGPSk96-la93fUCiz8GLtzCS1Iwxaz_oSNjAN7Ui674ZMNQxSCEeFhesLUa_Rmrgi-oo9OkoZNL0GZe6QkAiKkYylG1eRLljIrCy-NHxVBTdMueuL8_SFqjOjkl8lGJIdAD5OSzxNqDe-ci_7sX-SaB3R1X-KFnkA';
 export const BASE_URL     = 'https://api.spotify.com/v1/';

@@ -17,6 +17,15 @@ export default class FetchArtistAxios {
         }).catch( error => {
             console.log(error);
         });
+    }
+
+    static getArtistAblbums(id) {
+        var url = configs.BASE_URL + 'artists/' + id + '/albums';
+        return axios.get(url, FetchArtistAxios.obj).then( (res) => {
+            return res;
+        }).catch( (error) => {
+            console.log(error);
+        });
 
     }
 
