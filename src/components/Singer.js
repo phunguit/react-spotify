@@ -21,7 +21,10 @@ class Singer extends Component {
 
     render() {
         var { artist } = this.state;
-
+        if(artist === null) {
+            return <div></div>;
+        }
+        //console.log(artist);
         return (
             <div className="panel panel-info">
                 <div className="panel-heading">
@@ -32,9 +35,9 @@ class Singer extends Component {
                         <div className="col-sm-4 col-md-4">
                             { this.getImg(artist) }
                             <blockquote style={{marginTop: 20}}>
-                                <p>Thu Minh</p>
+                                <p>{ artist.name }</p>
                             </blockquote>
-                            <p><i className="glyphicon glyphicon-play-circle" /><a rel="noopener noreferrer" target="_blank" href="https://open.spotify.com/artist/4mzMFxVZNS2uCVNdsVFoj5"> View Spotify</a><br /><br /><i className="glyphicon glyphicon-play-circle" /> Genres:<span className="label label-warning" style={{marginRight: 5}}>vietnamese pop</span></p>
+                            { this.getGenres(artist.genres) }
                         </div>
 
                         <div className="col-sm-8 col-md-8">
@@ -57,6 +60,15 @@ class Singer extends Component {
         );
     }
 
+    getGenres(renres) {
+        if(renres.length === 0) {
+            return;
+        }
+        return renres.map((item, index) => {
+            return <p key={ index }><span className="label label-warning" style={{marginRight: 5}}>{ item }</span></p>;
+        });
+    }
+
     getArtistFromAPI(id) {
         FetchArtistAxios.getArtist(id).then( res => {
             if(res.data !== null) {
@@ -69,9 +81,6 @@ class Singer extends Component {
     }
 
     getImg(artist) {
-        if(artist === null) {
-            return;
-        }
         var images = artist.images;
         var xhtml = <img src={window.location.origin + '/img/no_image_available.png'} alt='No image' />;        
 
