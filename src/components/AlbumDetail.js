@@ -9,7 +9,7 @@ class AlbumDetail extends Component {
         super(props);
 
         this.state = {
-            artist: null,
+            album: null,
             tracks: []
         };
     }
@@ -23,31 +23,27 @@ class AlbumDetail extends Component {
 
     render() {
         var { match } = this.props;
-        var { tracks, artist } = this.state;
+        var { album, tracks } = this.state;
         if(tracks.length === 0) {
             return <div></div>;
         }
-        console.log(artist);
-        
+
         return (
             <div className="panel panel-danger">
                 <div className="panel-heading">
-                    <h3 className="panel-title">Album 1</h3>
+                    <h3 className="panel-title">{ album.name }</h3>
                 </div>
                 <div className="panel-body">
                     <div className="row">
-                        <div className="col-sm-4 col-md-4 col-lg-4"><img className="media-object img-thumbnail" src="https://i.scdn.co/image/757378d73eedc6a53cff69b49eca173fccc9ad02" alt="singer" /></div>
+                        <div className="col-sm-4 col-md-4 col-lg-4">
+                            { this.getImg(album) }
+                        </div>
                         <div className="col-sm-8 col-md-8 col-lg-8">
                             <div className="panel panel-warning">
-                            <div className="panel-heading">
-                                <h3 className="panel-title">List Tracks</h3>
-                            </div>
-                            <div className="panel-body">
-                                <Track />
-                                <Track />
-                                <Track />
-                                <Track />
-                            </div>
+                                <div className="panel-heading">
+                                    <h3 className="panel-title">List Tracks</h3>
+                                </div>
+                                <div className="panel-body">{ this.getTracks(tracks) }</div>
                             </div>
                         </div>
                     </div>
@@ -56,12 +52,28 @@ class AlbumDetail extends Component {
         );
     }
 
+    getTracks(tracks) {
+        return tracks.map( (item, index) => {
+            return <Track key={ index } track={ item } />
+        });
+    }
+
+    getImg(album) {
+        var images = album.images;
+        var xhtml = <img src={window.location.origin + '/img/no_image_available.png'} alt='No image' />;        
+
+        if(images !== undefined && images.length > 1) {
+            xhtml = <img src={images[1].url} alt={ album.name } className='img-rounded img-responsive' />
+        }
+        return xhtml;
+    }
+
     getAlbumTracksFromAPI(id) {
         FetchArtistAxios.getAblbumTracks(id).then( res => {
             if(res.data !== undefined) {
                 this.setState({
-                    artist: res.data.items[0].artists[0],
-                    tracks: res.data.items
+                    album: res.data,
+                    tracks: res.data.tracks.items
                 })
             }
         });

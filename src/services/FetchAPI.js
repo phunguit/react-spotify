@@ -14,7 +14,9 @@ export default class FetchAPI {
 
         return fetch(url, FetchAPI.obj).then( (res) => {
             return res.json();
-        })
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
 }
