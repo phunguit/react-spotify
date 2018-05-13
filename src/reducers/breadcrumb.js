@@ -9,9 +9,9 @@ var defaultState = [
 
 const breadcrumb = (state = defaultState, action) => {
     switch(action.type) {
-        case Types.CHANGE_QUERY:
-            state = action.query;
-            return state;
+        case Types.ARTIST_PAGE:
+            state.push(action.breadcrumb);
+            return [...state];
         default:
             return state;
     }

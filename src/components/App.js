@@ -17,7 +17,7 @@ class App extends Component {
             <Header />
             <div className="row">
                 <Breadcrumb />
-                { this.getContentPage(routes) }           
+                { this.getContentPage(routes) }  
             </div>
           </div>
         </div>

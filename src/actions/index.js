@@ -6,3 +6,10 @@ export const AcChangeQuery = (query) => {
         query
     }
 }
+
+export const AcGoToArtistPage = (breadcrumb) => {
+    return {
+        type: Types.ARTIST_PAGE,
+        breadcrumb
+    }
+}

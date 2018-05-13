@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Album from './Album';
 import FetchArtistAxios from '../services/FetchArtistAxios';
+import { AcGoToArtistPage } from '../actions/index';
 
 class Singer extends Component {
 
@@ -17,7 +19,13 @@ class Singer extends Component {
     componentWillMount() {
         var id = this.props.match.params.id;
         this.getArtistFromAPI(id);
-        this.getArtistAlbumFromAPI(id);
+        this.getArtistAlbumFromAPI(id);        
+    }
+    componentWillUpdate(props) {
+        var { artist } = this.state;
+        if(artist !== null) {            
+            this.props.initArtistBreadcrumbs({to: this.props.match.url, name: artist.name});
+        }
     }
 
     render() {
@@ -25,7 +33,7 @@ class Singer extends Component {
         if(artist === null || albums.length === 0) {
             return <div></div>;
         }
-        
+
         var albumsToRender = albums.map((album, index) => {
             return <Album key={ index } album={ album } />
         });
@@ -83,7 +91,7 @@ class Singer extends Component {
 
     getArtistAlbumFromAPI(id) {
         FetchArtistAxios.getArtistAblbums(id).then( res => {
-            if(res.data !== null) {                
+            if(res.data !== null) {
                 this.setState({
                     albums: res.data.items
                 });
@@ -102,4 +110,12 @@ class Singer extends Component {
     }
 }
 
-export default Singer;
+const mapStateToDispatch = dis => {
+    return {
+        initArtistBreadcrumbs: val => {
+            dis(AcGoToArtistPage(val));
+        }
+    }
+}
+
+export default connect(null, mapStateToDispatch)(Singer);

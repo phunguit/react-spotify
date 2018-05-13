@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import Singer from '../components/Singer';
 
 class ArtistPage extends Component {
-  render() {
-    
+
+  render() {    
     var { match } = this.props;
 
     return (
