@@ -13,3 +13,9 @@ export const AcGoToArtistPage = (breadcrumb) => {
         breadcrumb
     }
 }
+
+export const ActionGoToHomePage = () => {
+    return {
+        type: Types.HOME_PAGE
+    }
+}

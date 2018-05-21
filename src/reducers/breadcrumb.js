@@ -9,8 +9,15 @@ var defaultState = [
 
 const breadcrumb = (state = defaultState, action) => {
     switch(action.type) {
+        case Types.HOME_PAGE:
+            state = [{
+                    to: '',
+                    name: 'Home'
+                }];
+            return state;
+            
         case Types.ARTIST_PAGE:
-            state.push(action.breadcrumb);
+            state[1] = action.breadcrumb;
             return [...state];
         default:
             return state;

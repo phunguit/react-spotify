@@ -23,7 +23,7 @@ class Singer extends Component {
     }
     componentWillUpdate(props) {
         var { artist } = this.state;
-        if(artist !== null) {            
+        if(artist !== null) {
             this.props.initArtistBreadcrumbs({to: this.props.match.url, name: artist.name});
         }
     }
