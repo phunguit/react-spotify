@@ -35,8 +35,8 @@ class SearchForm extends Component {
         this.props.changeQuery('');
     }
 
-    render() {
-        var queryValue = this.state.query !== null ? this.state.query : this.props.query;
+    render() {        
+        var queryValue = this.state.query !== '' ? this.state.query : this.props.query;
 
         return (
             <div className="panel-heading">
