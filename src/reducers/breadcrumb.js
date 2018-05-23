@@ -19,6 +19,11 @@ const breadcrumb = (state = defaultState, action) => {
         case Types.ARTIST_PAGE:
             state[1] = action.breadcrumb;
             return [...state];
+
+        case Types.ALBUM_PAGE:
+            state[2] = action.breadcrumb;
+            return [...state];
+
         default:
             return state;
     }

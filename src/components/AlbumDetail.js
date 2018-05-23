@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Track from './Track';
 import FetchArtistAxios from '../services/FetchArtistAxios';
+import { AcGoToAlbumPage } from '../actions/index';
 
 class AlbumDetail extends Component {
     
@@ -75,9 +77,19 @@ class AlbumDetail extends Component {
                     album: res.data,
                     tracks: res.data.tracks.items
                 })
+                //console.log(this.props.match.url);
+                this.props.initAlbumBreadcrumb({to: this.props.match.url, name: res.data.name});
             }
         });
     }
 }
 
-export default AlbumDetail;
+const mapDispatchToProps = dispatch => {
+    return {
+        initAlbumBreadcrumb: val => {
+            dispatch(AcGoToAlbumPage(val))
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(AlbumDetail);

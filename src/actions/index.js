@@ -19,3 +19,10 @@ export const ActionGoToHomePage = () => {
         type: Types.HOME_PAGE
     }
 }
+
+export const AcGoToAlbumPage = (breadcrumb) => {
+    return {
+        type: Types.ALBUM_PAGE,
+        breadcrumb
+    }
+}

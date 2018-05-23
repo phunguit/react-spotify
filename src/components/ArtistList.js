@@ -18,6 +18,10 @@ class ArtistList extends Component {
         this.getArtistList(nextProps.query);
     }
 
+    componentWillMount() {
+        this.getArtistList(this.props.query);
+    }
+
     render() {
         var { artists } = this.state;
 

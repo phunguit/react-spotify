@@ -10,9 +10,10 @@ const BreadcrumbLink = ({ item }) => (
         children={
             ({ match }) => {
                 var classActive = match ? "active" : "";
-                var xhtml = item.name;
-                if(match.path.length === 1) {
-                    xhtml = <Link className='nav-link text-uppercase text-expanded' to={item.to}>{ item.name }</Link>
+                var xhtml = <Link className='nav-link text-uppercase text-expanded' to={item.to}>{ item.name }</Link>;
+                console.log(match);
+                if(match !== null && match.isExact === true) {
+                    xhtml = item.name;
                 }
                 return (
                     <li className={`nav-item px-lg-4 ${classActive}`}>
@@ -36,7 +37,10 @@ class Breadcrumb extends Component {
     getBreadcrumb(breadcrumb) {
         
         var xhtml = breadcrumb.map((item, index) => {
-            return <BreadcrumbLink key={ index } item={ item } />
+            if(item !== undefined) {
+                return <BreadcrumbLink key={ index } item={ item } />
+            }
+            return null;
         });
         return xhtml;
     }
