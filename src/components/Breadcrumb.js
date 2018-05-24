@@ -11,7 +11,6 @@ const BreadcrumbLink = ({ item }) => (
             ({ match }) => {
                 var classActive = match ? "active" : "";
                 var xhtml = <Link className='nav-link text-uppercase text-expanded' to={item.to}>{ item.name }</Link>;
-                console.log(match);
                 if(match !== null && match.isExact === true) {
                     xhtml = item.name;
                 }
